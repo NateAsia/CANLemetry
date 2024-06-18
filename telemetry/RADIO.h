@@ -13,10 +13,32 @@
 /* --------------------------- Variables --------------------------- */
 
   typedef struct {
+    uint8_t CE_PIN;
+    uint8_t CSN_PIN;
+    uint8_t SPI_MISO_PIN;
+    uint8_t SPI_MOSI_PIN;
+    uint8_t SPI_SCK;
+    uint8_t SPI_SS;
+  } nRF24_COMMS_PINS;
+
+  typedef struct {
     uint32_t identifier;
     uint8_t data_length_code;
     uint8_t data[8];
   } CAN_RF_PACKET;
+
+  class CAN_Transeiver{
+    private:
+      nRF24_COMMS_PINS comms_pins;
+      RF24 radio;
+    public:
+      CAN_Transeiver(uint8_t,uint8_t,uint8_t,uint8_t,uint8_t,uint8_t);
+      CAN_RF_PACKET data_out;
+      CAN_RF_PACKET data_in;
+      void transmit_message();
+      void receive_message();
+
+  }
 
   #define RADIO_TX_TASK_PRIO    9         // Task Priority
   #define RADIO_RX_TASK_PRIO    9         // Task Priority
