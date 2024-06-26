@@ -1,7 +1,7 @@
 /* --------------------- Imports ------------------ */
   // External
     #include <stdio.h>                // Yummy OS Stuff
-    #include <stdlib.h>               // Alot of helpful yummy libs
+    #include <stdlib.h>               // A lot of helpful yummy libs
     #include "freertos/FreeRTOS.h"    // Task Management
     #include "freertos/task.h"        // Task Management
     #include "freertos/queue.h"       // Task Management 
@@ -47,6 +47,7 @@ void app_main(void){
 
 void setup() {
   Serial.begin(115200);
+  
   setup_radio(); 
   #ifdef CAR_NODE 
     setup_canbus();

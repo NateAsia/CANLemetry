@@ -7,11 +7,13 @@
 
 /* --------------------------- Imports --------------------------- */
   
-  #include <SPI.h>
+  #include <stdint.h>
   #include <RF24.h>
+  #include <SPI.h>
 
 /* --------------------------- Variables --------------------------- */
 
+// in radio class
   typedef struct {
     uint8_t CE_PIN;
     uint8_t CSN_PIN;
@@ -21,6 +23,7 @@
     uint8_t SPI_SS;
   } nRF24_COMMS_PINS;
 
+  // in radio class
   typedef struct {
     uint32_t identifier;
     uint8_t data_length_code;
@@ -32,7 +35,7 @@
       nRF24_COMMS_PINS comms_pins;
       RF24 radio;
     public:
-      CAN_Transeiver(uint8_t,uint8_t,uint8_t,uint8_t,uint8_t,uint8_t);
+      CAN_Transeiver(nRF24_COMMS_PINS);
       CAN_RF_PACKET data_out;
       CAN_RF_PACKET data_in;
       void transmit_message();
